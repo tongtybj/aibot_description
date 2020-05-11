@@ -1,0 +1,258 @@
+<?xml version='1.0'?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename ="$(find bricklayer_description)/urdf/arm/arm.transmission.xacro"/>
+  <xacro:include filename ="$(find bricklayer_description)/urdf/arm/arm.gazebo.xacro"/>
+  <xacro:include filename ="$(find bricklayer_description)/urdf/inertia.xacro"/>
+  <xacro:include filename="$(find bricklayer_description)/urdf/gripper/gripper.urdf.xacro" />
+
+  <xacro:macro name="bricklayer_arm" params="parent_link *origin">
+    <link name='arm_base_link'>
+      <!-- The Chassis Mesh -->
+      <visual name='arm_base_visual'>
+        <origin xyz="0 0 0" rpy=" 0 0 0"/>
+        <geometry>
+          <mesh filename = "package://bricklayer_description/meshes/bricklayer_arm_base20190720.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+
+      <!-- The Collision of the model -->
+      <collision name='collision'>
+        <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
+        <geometry>
+          <box size="0.24 0.23 1.92"/>
+        </geometry>
+      </collision>
+
+      <!-- the physics for gazebo -->
+      <inertial>
+        <mass value="1.0"/>
+        <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
+        <box_inertia m="1.0" x="0.24" y="0.23" z="1.92"/>
+      </inertial> 
+    </link>
+
+    <joint type="revolute" name="arm_base_link_joint">
+      <xacro:insert_block name="origin" />
+      <child link="arm_base_link"/>
+      <parent link="${parent_link}"/>
+      <axis xyz="0 0 1" />
+      <limit effort="100.0" lower="0" upper="${2 * PI - 0.01}" velocity="0.3539"/>
+    </joint>
+
+    <link name = "arm_vert_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <geometry>
+          <mesh filename = "package://bricklayer_description/meshes/bricklayer_arm_vert20190720.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <!-- The Collision of the model -->
+      <collision name='collision'>
+        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <geometry>
+          <box size="2.089 0.296 0.130"/>
+        </geometry>
+      </collision>
+
+      <!-- the physics for gazebo -->
+      <inertial>
+        <mass value="1.0"/>
+        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <box_inertia m="1.0" x="2.089" y="0.296" z="0.130"/>
+      </inertial> 
+    </link>
+
+    <joint type="prismatic" name="arm_vert_link_joint">
+      <origin xyz="0.102 0 1.7328" rpy="0 0 ${-PI}"/>
+      <child link="arm_vert_link"/>
+      <parent link="arm_base_link"/>
+      <axis xyz="0 0 -1" />
+      <limit effort="100000.0" lower="0" upper="1.47" velocity="0.0833"/>
+    </joint>
+
+    <link name = "arm_hori_brick_arm_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <geometry>
+          <mesh filename = "package://bricklayer_description/meshes/bricklayer_arm_hori20190720.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <!-- The Collision of the model -->
+      <!-- <collision name='collision'>
+        <origin xyz="0 0.058 0.148" rpy=" 0 0 0"/>
+        <geometry>
+          <box size="0.099 0.125 0.353"/>
+        </geometry>
+      </collision> -->
+
+      <!-- the physics for gazebo -->
+      <inertial>
+        <mass value="0.5"/>
+        <origin xyz="0 0.058 0.148" rpy=" 0 0 0"/>
+        <box_inertia m="0.5" x="0.099" y="0.125" z="0.353"/>
+      </inertial> 
+    </link>
+
+    <joint type="prismatic" name="arm_hori_brick_arm_link_joint">
+      <origin xyz="-0.685596 0.08801 -0.0427" rpy="0 0 ${PI}"/>
+      <child link="arm_hori_brick_arm_link"/>
+      <parent link="arm_vert_link"/>
+      <axis xyz="-1 0 0" />
+      <limit effort="100.0" lower="0" upper="0.346" velocity="0.05"/>
+    </joint>
+
+    <link name = "arm_hori_cement_arm_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <geometry>
+          <mesh filename = "package://bricklayer_description/meshes/bricklayer_cement_hori20190720.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <!-- The Collision of the model -->
+      <!-- <collision name='collision'>
+        <origin xyz="0 0.058 0.148" rpy=" 0 0 0"/>
+        <geometry>
+          <box size="0.099 0.125 0.353"/>
+        </geometry>
+      </collision> -->
+
+      <!-- the physics for gazebo -->
+      <inertial>
+        <mass value="0.5"/>
+        <origin xyz="0 0.058 0.148" rpy=" 0 0 0"/>
+        <box_inertia m="0.5" x="0.099" y="0.125" z="0.353"/>
+      </inertial> 
+    </link>
+
+    <joint type="prismatic" name="arm_hori_cement_arm_link_joint">
+      <origin xyz="1.00201 -0.06549 -0.041674" rpy="0 0 0"/>
+      <child link="arm_hori_cement_arm_link"/>
+      <parent link="arm_vert_link"/>
+      <axis xyz="-1 0 0" />
+      <limit effort="100.0" lower="0" upper="0.42" velocity="0.05"/>
+    </joint>
+
+    <link name = "gripper_rot_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <geometry>
+          <mesh filename = "package://bricklayer_description/meshes/bricklayer_gripper_rot20190720.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <!-- The Collision of the model -->
+      <collision name='collision'>
+        <origin xyz="0 0 0" rpy=" 0 0 0"/>
+        <geometry>
+           <mesh filename = "package://bricklayer_description/meshes/bricklayer_gripper_rot20190720.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+
+      <!-- the physics for gazebo -->
+      <inertial>
+        <mass value="0.2"/>
+        <origin xyz="0 0 -0.205" rpy=" 0 0 0"/>
+        <box_inertia m="0.2" x="0.2" y="0.418" z="0.120"/>
+      </inertial> 
+    </link>
+
+    <joint type="revolute" name="gripper_rot_link_joint">
+      <origin xyz="0.139 0.088 0.01402" rpy="0 0 ${PI/2}"/>  
+      <child link="gripper_rot_link"/>
+      <parent link="arm_hori_brick_arm_link"/>
+      <axis xyz="0 0 1" />
+      <limit effort="100.0" lower="${-PI}" upper="${PI}" velocity="0.872665"/>
+    </joint>
+
+    <link name="brick_camera_link">
+      <visual name="brick_camera_visual">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.09 0.04 0.03"/>
+        </geometry>
+        <material name="orange">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+
+      <collision name="brick_camera_collision">
+        <origin xyz="0 0 0" rpy=" 0 0 0"/>
+        <geometry>
+          <box size="0.09 0.04 0.03"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="0.1"/>
+        <origin xyz="0 0 0" rpy=" 0 0 0"/>
+        <box_inertia m="0.1" x="0.09" y="0.04" z="0.03"/>
+      </inertial>
+    </link>
+
+    <joint name = "brick_camera_joint" type = "fixed">
+      <origin xyz="0.0 -0.23 -0.28" rpy="${26 * deg_to_rad} 0 0"/>
+      <parent link = "gripper_rot_link" />
+      <child link = "brick_camera_link"/>
+    </joint>
+
+    <link name = "cemment_rot_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <geometry>
+          <mesh filename = "package://bricklayer_description/meshes/bricklayer_cement_rot20190720.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <!-- The Collision of the model -->
+      <collision name='collision'>
+        <origin xyz="0 0 0" rpy=" 0 0 0"/>
+        <geometry>
+           <mesh filename = "package://bricklayer_description/meshes/bricklayer_cement_rot20190720.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+
+      <!-- the physics for gazebo -->
+      <inertial>
+        <mass value="0.2"/>
+        <origin xyz="0 0 -0.205" rpy=" 0 0 0"/>
+        <box_inertia m="0.2" x="0.2" y="0.418" z="0.120"/>
+      </inertial> 
+    </link>
+
+    <joint type="revolute" name="cemment_rot_link_joint">
+      <origin xyz="0.0415 0.0655439 0.0475" rpy="0 0 0"/>
+      <child link="cemment_rot_link"/>
+      <parent link="arm_hori_cement_arm_link"/>
+      <axis xyz="0 0 1" />
+      <limit effort="100.0" lower="${-PI}" upper="${PI}" velocity="0.251307"/>
+    </joint>
+
+    <!-- Transmissions -->
+    <arm_simple_transmission name = "arm_base_link"               reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_vert_link"               reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_hori_brick_arm_link"     reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_hori_cement_arm_link"    reduction = "1.0"/>
+    <arm_simple_transmission name = "gripper_rot_link"            reduction = "1.0"/>
+    <arm_simple_transmission name = "cemment_rot_link"            reduction = "1.0"/>
+
+    <!-- gripper -->
+    <bricklayer_gripper name="gripper_left" parent="gripper_rot_link">
+      <origin xyz="0 -0.123 -0.235" rpy="0 0 0"/>
+    </bricklayer_gripper>
+
+    <bricklayer_gripper name="gripper_right" parent="gripper_rot_link">
+      <origin xyz="0 0.123 -0.235" rpy="0 0 ${PI}"/>
+    </bricklayer_gripper>
+
+    <bricklayer_cement_gripper name="cement_left" parent="cemment_rot_link">
+      <origin xyz="0 -0.067 -0.25" rpy="0 0 ${-PI/2}"/>
+    </bricklayer_cement_gripper>
+
+    <bricklayer_cement_gripper name="cement_right" parent="cemment_rot_link">
+      <origin xyz="0 0.067 -0.25" rpy="0 0 ${PI/2}"/>
+    </bricklayer_cement_gripper>
+    <!-- arm gazebo reference -->
+    <arm_gazebo>
+    </arm_gazebo>
+
+  </xacro:macro>
+</robot>
