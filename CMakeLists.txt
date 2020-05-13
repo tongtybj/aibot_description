@@ -3,12 +3,17 @@ project(aibot_description)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
-
+find_package(catkin REQUIRED COMPONENTS
+  controller_manager
+  position_controllers
+  joint_state_controller
+  joint_trajectory_controller
+)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -99,10 +104,10 @@ find_package(catkin REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES aibot_description
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
+   INCLUDE_DIRS include
+  LIBRARIES ${PROJECT_NAME}
+  CATKIN_DEPENDS controller_manager position_controllers joint_state_controller joint_trajectory_controller
+   #DEPENDS system_lib
 )
 
 ###########
@@ -112,14 +117,42 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-# ${catkin_INCLUDE_DIRS}
+  include
+  ${catkin_INCLUDE_DIRS}
 )
-
+add_library(${PROJECT_NAME}
+src/aibot_control.cpp
+src/AIBotHardware.cpp
+src/joint.cpp
+)
+target_link_libraries(${PROJECT_NAME}
+${catkin_LIBRARIES}
+)
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/aibot_description.cpp
 # )
+add_executable(aibot_node src/aibot_node.cpp)
+
+# add_library(${PROJECT_NAME}
+#   src/aibot_control.cpp
+#   src/AIBotHardware.cpp
+#   src/joint.cpp
+# )
+
+
+
+target_link_libraries(aibot_node
+  ${catkin_LIBRARIES}
+  ${PROJECT_NAME}
+)
+
+
+add_executable(aibot_arm_demo src/aibot_arm_demo.cpp)
+
+target_link_libraries(aibot_arm_demo
+  ${catkin_LIBRARIES}
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
