@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   position_controllers
   joint_state_controller
   joint_trajectory_controller
+  lino_msgs
 )
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -122,7 +123,6 @@ include_directories(
 )
 add_library(${PROJECT_NAME}
 src/aibot_control.cpp
-src/AIBotHardware.cpp
 src/joint.cpp
 )
 target_link_libraries(${PROJECT_NAME}

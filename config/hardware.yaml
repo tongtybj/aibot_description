@@ -2,5 +2,10 @@ myrobot:
   hardware_interface:
      loop_hz: 10 # hz
      joints:
-       - j1
-       - j2
+      - arm_base_link_rot_joint
+      - arm_first_link_joint
+      - arm_second_link_joint
+      - arm_third_link_joint
+      - arm_fourth_link_joint
+      - arm_second_motor_link_joint
+      - arm_second_connector_link_joint

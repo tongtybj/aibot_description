@@ -9,34 +9,70 @@
       <mu2>0.9</mu2>
     </gazebo>
 
-    <gazebo reference = "arm_vert_link">
-      <mu1>0.9</mu1>
-      <mu2>0.9</mu2>
-    </gazebo>
-
-    <gazebo reference = "arm_hori_link">
-      <mu1>0.9</mu1>
-      <mu2>0.9</mu2>
-    </gazebo>
-
-    <gazebo reference = "gripper_rot_link">
-      <mu1>0.9</mu1>
-      <mu2>0.9</mu2>
-    </gazebo>
-
     <gazebo reference = "arm_base_link_joint">
       <implicitSpringDamper>true</implicitSpringDamper>
     </gazebo>
 
-    <gazebo reference = "arm_vert_link_joint">
+    <gazebo reference = "arm_base_rot_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+
+    <gazebo reference = "arm_base_rot_link_joint">
       <implicitSpringDamper>true</implicitSpringDamper>
     </gazebo>
 
-    <gazebo reference = "arm_hori_link_joint">
+    <gazebo reference = "arm_first_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+
+    <gazebo reference = "arm_first_link_joint">
       <implicitSpringDamper>true</implicitSpringDamper>
     </gazebo>
 
-    <gazebo reference = "gripper_rot_link_joint">
+    <gazebo reference = "arm_second_motor_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+
+    <gazebo reference = "arm_second_motor_link_joint">
+      <implicitSpringDamper>true</implicitSpringDamper>
+    </gazebo>
+
+    <gazebo reference = "arm_second_connector_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+
+    <gazebo reference = "arm_second_connector_link_joint">
+      <implicitSpringDamper>true</implicitSpringDamper>
+    </gazebo>
+
+    <gazebo reference = "arm_second_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+
+    <gazebo reference = "arm_second_link_joint">
+      <implicitSpringDamper>true</implicitSpringDamper>
+    </gazebo>
+
+    <gazebo reference = "arm_third_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+
+    <gazebo reference = "arm_third_link_joint">
+      <implicitSpringDamper>true</implicitSpringDamper>
+    </gazebo>
+
+    <gazebo reference = "arm_fourth_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+
+    <gazebo reference = "arm_fourth_link_joint">
       <implicitSpringDamper>true</implicitSpringDamper>
     </gazebo>
 

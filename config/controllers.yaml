@@ -4,15 +4,35 @@ myrobot:
       type: joint_state_controller/JointStateController
       publish_rate: 50
     position:
-      j1:
+      arm_base_link_rot_joint:
         type: position_controllers/JointPositionController
-        joint: j1
-      j2:
+        joint: arm_base_link_rot_joint
+      arm_first_link_joint:
         type: position_controllers/JointPositionController
-        joint: j2
+        joint: arm_first_link_joint
+      arm_second_link_joint:
+        type: position_controllers/JointPositionController
+        joint: arm_second_link_joint
+      arm_third_link_joint:
+        type: position_controllers/JointPositionController
+        joint: arm_third_link_joint
+      arm_fourth_link_joint:
+        type: position_controllers/JointPositionController
+        joint: arm_fourth_link_joint
+      arm_second_motor_link_joint:
+        type: position_controllers/JointPositionController
+        joint: arm_second_motor_link_joint
+      arm_second_connector_link_joint:
+        type: position_controllers/JointPositionController
+        joint: arm_second_connector_link_joint
     arm_trajectory:
         type: "position_controllers/JointTrajectoryController"
         joints:
-            - j1
-            - j2
+            - arm_base_link_rot_joint
+            - arm_first_link_joint
+            - arm_second_link_joint
+            - arm_third_link_joint
+            - arm_fourth_link_joint
+            - arm_second_motor_link_joint
+            - arm_second_connector_link_joint
 

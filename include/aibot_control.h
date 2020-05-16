@@ -4,25 +4,32 @@
 #include <hardware_interface/joint_state_interface.h>
 #include <hardware_interface/joint_command_interface.h>
 #include <hardware_interface/robot_hw.h>
+#include "joint.h"
+#include "ros/ros.h"
+#include "lino_msgs/ServoCtrl.h"
+
 
 namespace AIBotHardwareInterface{
-    /// \brief Hardware interface for a robot
     class AIBot : public hardware_interface::RobotHW {
 	public:
+	  
 		AIBot();
 		~AIBot();
-		void read();
+		ros::NodeHandle mNodeHandle;
+		ros::ServiceClient mClient;
+		lino_msgs::ServoCtrl mSrv;
+
+		Joint joints[7];
+		Joint getJoint(std::string jointName);
+		void setJoint(Joint joint);
 		void write();
+		void read();
+
 	private: 
-		// Interfaces
 		hardware_interface::JointStateInterface joint_state_interface;
 		hardware_interface::PositionJointInterface joint_position_interface;
-		double cmd[2];
-		double pos[2];
-		double vel[2];
-		double eff[2];
 
-    }; // class
+    }; 
 
-} // end namespace
+}
 #endif

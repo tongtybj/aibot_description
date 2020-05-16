@@ -2,9 +2,8 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename ="$(find aibot_description)/urdf/arm/arm.transmission.xacro"/>
-  <xacro:include filename ="$(find aibot_description)/urdf/arm/arm.gazebo.xacro"/>
-  <!-- <xacro:include filename ="$(find aibot_description)/urdf/inertia.xacro"/> -->
-  <!-- <xacro:include filename="$(find aibot_description)/urdf/gripper/gripper.urdf.xacro" /> -->
+  <!-- <xacro:include filename ="$(find aibot_description)/urdf/arm/arm.gazebo.xacro"/> -->
+  <xacro:include filename ="$(find aibot_description)/urdf/arm/inertia.xacro"/>
 
   <xacro:macro name="aibot_arm" params="parent_link *origin">
     <link name='arm_base_link'>
@@ -25,18 +24,21 @@
       </collision>
 
       <!-- the physics for gazebo -->
-      <!-- <inertial>
-        <mass value="8.0"/>
+      <inertial>
+        <mass value="200.0"/>
         <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
         <box_inertia m="8.0" x="0.24" y="0.23" z="1.92"/>
-      </inertial>  -->
+      </inertial> 
     </link>
 
     <joint type="fixed" name="arm_base_link_joint">
       <xacro:insert_block name="origin" />
       <child link="arm_base_link"/>
       <parent link="${parent_link}"/>
+
     </joint>
+
+
 
     <link name='arm_base_rot_link'>
       <visual name='arm_base_rot_visual'>
@@ -53,14 +55,14 @@
         </geometry>
       </collision>
 
-      <!-- <inertial>
+      <inertial>
         <mass value="8.0"/>
         <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
         <box_inertia m="8.0" x="0.24" y="0.23" z="1.92"/>
-      </inertial>  -->
+      </inertial> 
     </link>
 
-    <joint type="revolute" name="arm_base_link_rot_joint">
+    <joint type="revolute" name="arm_base_rot_link_joint">
       <origin xyz="0 0 0.0355" rpy="0 0 ${-PI}"/>
       <child link="arm_base_rot_link"/>
       <parent link="arm_base_link"/>
@@ -69,7 +71,6 @@
     </joint>
 
 
-    
      <link name = "arm_first_link">
       <visual>
         <origin xyz = "0 0 0" rpy = "0 0 0"/>
@@ -77,20 +78,18 @@
           <mesh filename = "package://aibot_description/urdf/arm/meshes/arm_first.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
-      <!-- The Collision of the model -->
       <collision name='collision'>
-        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
         <geometry>
-          <box size="2.089 0.296 0.130"/>
+          <box size="0.24 0.23 1.92"/>
         </geometry>
       </collision>
 
-      <!-- the physics for gazebo -->
-      <!-- <inertial>
-        <mass value="6.0"/>
-        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
-        <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
-      </inertial>  -->
+      <inertial>
+        <mass value="8.0"/>
+        <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
+        <box_inertia m="8.0" x="0.24" y="0.23" z="1.92"/>
+      </inertial>
     </link>
 
     <joint type="revolute" name="arm_first_link_joint">
@@ -98,9 +97,8 @@
       <child link="arm_first_link"/>
       <parent link="arm_base_rot_link"/>
       <axis xyz="0 1 0" />
-      <limit effort="100000.0" lower="0" upper="1.47" velocity="0.0833"/>
+      <limit effort="100000.0" lower="0" upper="1.47" velocity="0"/>
     </joint>
-
 
     <link name = "arm_second_motor_link">
       <visual>
@@ -109,7 +107,6 @@
           <mesh filename = "package://aibot_description/urdf/arm/meshes/arm_second_motor.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
-      <!-- The Collision of the model -->
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
@@ -117,13 +114,12 @@
         </geometry>
       </collision>
 
-      <!-- the physics for gazebo -->
-      <!-- <inertial>
+      <inertial>
         <mass value="6.0"/>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
-      </inertial>  -->
-    </link>arm_second_connector_link
+      </inertial> 
+    </link>
 
     <joint type="revolute" name="arm_second_motor_link_joint">
       <origin xyz="0 0.0245 0" rpy="0 0 0"/>
@@ -140,7 +136,6 @@
           <mesh filename = "package://aibot_description/urdf/arm/meshes/arm_second_connector.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
-      <!-- The Collision of the model -->
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
@@ -148,12 +143,11 @@
         </geometry>
       </collision>
 
-      <!-- the physics for gazebo -->
-      <!-- <inertial>
+      <inertial>
         <mass value="6.0"/>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
-      </inertial>  -->
+      </inertial> 
     </link>
 
     <joint type="revolute" name="arm_second_connector_link_joint">
@@ -172,7 +166,6 @@
           <mesh filename = "package://aibot_description/urdf/arm/meshes/arm_second.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
-      <!-- The Collision of the model -->
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
@@ -180,12 +173,11 @@
         </geometry>
       </collision>
 
-      <!-- the physics for gazebo -->
-      <!-- <inertial>
+      <inertial>
         <mass value="6.0"/>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
-      </inertial>  -->
+      </inertial> 
     </link>
 
     <joint type="revolute" name="arm_second_link_joint">
@@ -203,7 +195,6 @@
           <mesh filename = "package://aibot_description/urdf/arm/meshes/arm_third.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
-      <!-- The Collision of the model -->
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
@@ -211,12 +202,11 @@
         </geometry>
       </collision>
 
-      <!-- the physics for gazebo -->
-      <!-- <inertial>
+      <inertial>
         <mass value="6.0"/>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
-      </inertial>  -->
+      </inertial> 
     </link>
 
     <joint type="revolute" name="arm_third_link_joint">
@@ -227,7 +217,6 @@
       <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.0833"/>
     </joint>
 
-
     <link name = "arm_fourth_link">
       <visual>
         <origin xyz = "0 0 0" rpy = "0 0 0"/>
@@ -235,7 +224,6 @@
           <mesh filename = "package://aibot_description/urdf/arm/meshes/arm_fourth.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
-      <!-- The Collision of the model -->
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
@@ -243,12 +231,11 @@
         </geometry>
       </collision>
 
-      <!-- the physics for gazebo -->
-      <!-- <inertial>
+      <inertial>
         <mass value="6.0"/>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
-      </inertial>  -->
+      </inertial> 
     </link>
 
     <joint type="revolute" name="arm_fourth_link_joint">
@@ -258,6 +245,18 @@
       <axis xyz="0 1 0" />
       <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.0833"/>
     </joint>
+  
+ 
+    <!-- <arm_simple_transmission name = "arm_base_link"             reduction = "1.0"/> -->
+    <!-- <arm_simple_transmission name = "arm_base_rot_link"         reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_first_link"            reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_second_motor_link"     reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_second_connector_link" reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_second_link"           reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_fourth_link"           reduction = "1.0"/> -->
+
+    <!-- <arm_gazebo>
+    </arm_gazebo> -->
 
   </xacro:macro>
 </robot>
