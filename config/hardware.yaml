@@ -1,8 +1,8 @@
-myrobot:
+aibot:
   hardware_interface:
      loop_hz: 10 # hz
      joints:
-      - arm_base_link_rot_joint
+      - arm_base_rot_link_joint
       - arm_first_link_joint
       - arm_second_link_joint
       - arm_third_link_joint

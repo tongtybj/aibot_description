@@ -1,11 +1,12 @@
 <launch>
-    <rosparam file="$(find aibot_description)/config/hardware.yaml" command="load"/>
-    <rosparam file="$(find aibot_description)/config/controllers.yaml" command="load"/>
+    <!-- <rosparam file="$(find aibot_description)/config/hardware.yaml" command="load"/> -->
+    <!-- <rosparam file="$(find aibot_description)/config/controllers.yaml" command="load"/> -->
     <node name="aibot_description" pkg="aibot_description" type="aibot_node" output="screen"/>
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
         args="
-            /myrobot/controller/state
-            /myrobot/controller/position/j1
-            /myrobot/controller/position/j2
+          /aibot/controller/arm_controller
         "/>
+     -->
+       <include file="$(find aibot_arm_moveit_config)/launch/ros_controllers.launch" />
+
 </launch>
