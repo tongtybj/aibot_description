@@ -12,17 +12,17 @@ namespace AIBotHardwareInterface{
 	class Joint
 	{
 		private:
-			int mId;
 		public:
+			int mId;
 			double	position;
 			double	velocity;
 			double	effort;
 			double	posCmd;
 			double	velCmd;
 
-			std::string name;
+			std::string mName;
 			Joint();
-			Joint(int id);
+			Joint(int id,std::string name);
 			~Joint();
 	};
 }

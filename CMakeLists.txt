@@ -122,7 +122,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 add_library(${PROJECT_NAME}
-src/aibot_control.cpp
+src/aibot_arm_control.cpp
 src/joint.cpp
 )
 target_link_libraries(${PROJECT_NAME}
@@ -147,12 +147,6 @@ target_link_libraries(aibot_node
   ${PROJECT_NAME}
 )
 
-
-add_executable(aibot_arm_demo src/aibot_arm_demo.cpp)
-
-target_link_libraries(aibot_arm_demo
-  ${catkin_LIBRARIES}
-)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

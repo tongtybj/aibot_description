@@ -67,7 +67,7 @@
       <child link="arm_base_rot_link"/>
       <parent link="arm_base_link"/>
       <axis xyz="0 0 1" />
-      <limit effort="100.0" lower="0" upper="${2 * PI - 0.01}" velocity="0.3539"/>
+      <limit effort="100.0" lower="0" upper="${2 * PI - 0.01}" velocity="0.70"/>
     </joint>
 
 
@@ -126,7 +126,7 @@
       <child link="arm_second_motor_link"/>
       <parent link="arm_first_link"/>
       <axis xyz="0 1 0" />
-      <limit effort="100000.0" lower="0" upper="1.47" velocity="0.0833"/>
+      <limit effort="100000.0" lower="0" upper="1.47" velocity="0.833"/>
     </joint>
 
     <link name = "arm_second_connector_link">
@@ -155,7 +155,7 @@
       <child link="arm_second_connector_link"/>
       <parent link="arm_second_motor_link"/>
       <axis xyz="0 1 0" />
-      <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.0833"/>
+      <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.833"/>
     </joint>
 
 
@@ -185,7 +185,7 @@
       <child link="arm_second_link"/>
       <parent link="arm_first_link"/>
       <axis xyz="0 1 0" />
-      <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.0833"/>
+      <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.833"/>
     </joint>
 
     <link name = "arm_third_link">
@@ -214,7 +214,7 @@
       <child link="arm_third_link"/>
       <parent link="arm_second_link"/>
       <axis xyz="0 0 1" />
-      <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.0833"/>
+      <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.833"/>
     </joint>
 
     <link name = "arm_fourth_link">
@@ -243,17 +243,17 @@
       <child link="arm_fourth_link"/>
       <parent link="arm_third_link"/>
       <axis xyz="0 1 0" />
-      <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.0833"/>
+      <limit effort="100000.0" lower="-${PI}" upper="1.47" velocity="0.833"/>
     </joint>
   
  
-    <!-- <arm_simple_transmission name = "arm_base_link"             reduction = "1.0"/> -->
-    <!-- <arm_simple_transmission name = "arm_base_rot_link"         reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_base_link"             reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_base_rot_link"         reduction = "1.0"/>
     <arm_simple_transmission name = "arm_first_link"            reduction = "1.0"/>
     <arm_simple_transmission name = "arm_second_motor_link"     reduction = "1.0"/>
     <arm_simple_transmission name = "arm_second_connector_link" reduction = "1.0"/>
-    <arm_simple_transmission name = "arm_second_link"           reduction = "1.0"/>
-    <arm_simple_transmission name = "arm_fourth_link"           reduction = "1.0"/> -->
+    <arm_simple_transmission name = "arm_third_link"            reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_fourth_link"           reduction = "1.0"/>
 
     <!-- <arm_gazebo>
     </arm_gazebo> -->

@@ -1,8 +1,8 @@
 #include <ros/ros.h>
-#include "aibot_control.h"
+#include "aibot_arm_control.h"
 #include <controller_manager/controller_manager.h>
 int main(int argc, char** argv){
-	ros::init(argc, argv, "my_robot");
+	ros::init(argc, argv, "aibot_node");
 	AIBotHardwareInterface::AIBot robot; 
 	controller_manager::ControllerManager cm(&robot);
 	ros::AsyncSpinner spinner(1);

@@ -9,8 +9,9 @@
 namespace AIBotHardwareInterface{
 	Joint::Joint(){
 	}
-	Joint::Joint(int id){
+	Joint::Joint(int id,std::string name){
 		this->mId = id;
+		this->mName = name;
 	}
 	Joint::~Joint(){
 	}

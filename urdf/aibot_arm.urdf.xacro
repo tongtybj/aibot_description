@@ -13,7 +13,7 @@
   </aibot_arm>
 
   <!-- gazebo controller plugin -->
-  <xacro:include filename="$(find aibot_description)/controller/ros_controller.urdf.xacro" />
+  <xacro:include filename="$(find aibot_description)/urdf/controller/ros_controller.urdf.xacro" />
 
 
 </robot>
