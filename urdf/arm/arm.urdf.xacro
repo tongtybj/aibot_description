@@ -19,7 +19,7 @@
       <collision name='collision'>
         <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
         <geometry>
-          <box size="0.24 0.23 1.92"/>
+          <box size="0.024 0.023 0.092"/>
         </geometry>
       </collision>
 
@@ -51,7 +51,7 @@
       <collision name='collision'>
         <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
         <geometry>
-          <box size="0.24 0.23 1.92"/>
+          <box size="0.024 0.023 0.092"/>
         </geometry>
       </collision>
 
@@ -81,7 +81,7 @@
       <collision name='collision'>
         <origin xyz="0 0 0.96" rpy=" 0 0 0"/>
         <geometry>
-          <box size="0.24 0.23 1.92"/>
+          <box size="0.024 0.023 0.092"/>
         </geometry>
       </collision>
 
@@ -110,7 +110,7 @@
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
-          <box size="2.089 0.296 0.130"/>
+          <box size="0.089 0.0296 0.0130"/>
         </geometry>
       </collision>
 
@@ -139,7 +139,7 @@
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
-          <box size="2.089 0.296 0.130"/>
+          <box size="0.089 0.0296 0.0130"/>
         </geometry>
       </collision>
 
@@ -169,7 +169,7 @@
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
-          <box size="2.089 0.296 0.130"/>
+          <box size="0.089 0.0296 0.0130"/>
         </geometry>
       </collision>
 
@@ -198,7 +198,7 @@
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
-          <box size="2.089 0.296 0.130"/>
+          <box size="0.089 0.0296 0.0130"/>
         </geometry>
       </collision>
 
@@ -227,7 +227,7 @@
       <collision name='collision'>
         <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
         <geometry>
-          <box size="2.089 0.296 0.130"/>
+          <box size="0.089 0.0296 0.0130"/>
         </geometry>
       </collision>
 
@@ -245,6 +245,98 @@
       <axis xyz="0 1 0" />
       <limit effort="100000.0" lower="${(-90) * PI / 180}" upper="${(180-90) * PI / 180}" velocity="0.833"/>
     </joint>
+
+    <link name = "arm_fifth_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+         <geometry>
+           <box size="0.03 0.01 0.02"/>
+        </geometry>
+      </visual>
+     
+      <collision name='collision'>
+        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <geometry>
+          <box size="0.089 0.0296 0.0130"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="6.0"/>
+        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
+      </inertial> 
+    </link>
+
+    <joint type="revolute" name="arm_fifth_link_joint">
+      <origin xyz="-0.013 -0.013 0.034" rpy="0 0 0"/>
+      <child link="arm_fifth_link"/>
+      <parent link="arm_fourth_link"/>
+      <axis xyz="0 0 1" />
+      <limit effort="100000.0" lower="${(-90) * PI / 180}" upper="${(180-90) * PI / 180}" velocity="0.833"/>
+    </joint>
+
+
+     <link name = "arm_gripper_left_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+         <geometry>
+           <box size="0.005 0.005 0.02"/>
+        </geometry>
+      </visual>
+     
+      <collision name='collision'>
+        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <geometry>
+          <box size="0.089 0.0296 0.0130"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="6.0"/>
+        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
+      </inertial> 
+    </link>
+
+    <joint type="prismatic" name="arm_gripper_left_link_joint">
+      <origin xyz="0.01 0 0.02" rpy="0 0 0"/>
+      <child link="arm_gripper_left_link"/>
+      <parent link="arm_fifth_link"/>
+      <axis xyz="1 0 0" />
+      <limit effort="100000.0" lower="-0.005" upper="0" velocity="0.833"/>
+    </joint>
+  
+    <link name = "arm_gripper_right_link">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+         <geometry>
+           <box size="0.005 0.005 0.02"/>
+        </geometry>
+      </visual>
+     
+      <collision name='collision'>
+        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <geometry>
+          <box size="0.089 0.0296 0.0130"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="6.0"/>
+        <origin xyz="0.09331 0 -0.037679" rpy=" 0 0 0"/>
+        <box_inertia m="6.0" x="2.089" y="0.296" z="0.130"/>
+      </inertial> 
+    </link>
+
+    <joint type="prismatic" name="arm_gripper_right_link_joint">
+      <origin xyz="-0.01 0 0.02" rpy="0 0 0"/>
+      <child link="arm_gripper_right_link"/>
+      <parent link="arm_fifth_link"/>
+      <axis xyz="1 0 0" />
+      <limit effort="100000.0" lower="0" upper="0.005" velocity="0.833"/>
+    </joint>
+  
   
  
     <arm_simple_transmission name = "arm_base_link"             reduction = "1.0"/>
@@ -254,6 +346,9 @@
     <arm_simple_transmission name = "arm_second_connector_link" reduction = "1.0"/>
     <arm_simple_transmission name = "arm_third_link"            reduction = "1.0"/>
     <arm_simple_transmission name = "arm_fourth_link"           reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_fifth_link"            reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_gripper_left_link"     reduction = "1.0"/>
+    <arm_simple_transmission name = "arm_gripper_right_link"    reduction = "1.0"/>
 
     <!-- <arm_gazebo>
     </arm_gazebo> -->
