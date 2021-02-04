@@ -6,7 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-      Splitter Ratio: 0.5
+        - /RobotModel1
+        - /RobotModel1/Links1
+      Splitter Ratio: 0.772334278
     Tree Height: 565
   - Class: rviz/Selection
     Name: Selection
@@ -27,6 +29,8 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: ""
+Toolbars:
+  toolButtonStyle: 2
 Visualization Manager:
   Class: ""
   Displays:
@@ -49,19 +53,83 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        arm_base_connect:
+          Value: true
+        base_link:
+          Value: true
+        camera:
+          Value: true
+        camera_support_link:
+          Value: true
+        chassis:
+          Value: true
+        front_left_wheel:
+          Value: true
+        front_right_wheel:
+          Value: true
+        joint1:
+          Value: true
+        joint2:
+          Value: true
+        joint3:
+          Value: true
+        joint4:
+          Value: true
+        joint5:
+          Value: true
+        joint6:
+          Value: true
+        joint6_flange:
+          Value: true
+        lidar:
+          Value: true
+        rear_left_wheel:
+          Value: true
+        rear_right_wheel:
+          Value: true
+        sucker_joint:
+          Value: true
+        usb_camera_link:
+          Value: true
       Marker Scale: 0.200000003
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        base_link:
+          chassis:
+            arm_base_connect:
+              camera_support_link:
+                usb_camera_link:
+                  {}
+              joint1:
+                joint2:
+                  joint3:
+                    joint4:
+                      joint5:
+                        joint6:
+                          joint6_flange:
+                            sucker_joint:
+                              {}
+            camera:
+              {}
+            front_left_wheel:
+              {}
+            front_right_wheel:
+              {}
+            lidar:
+              {}
+            rear_left_wheel:
+              {}
+            rear_right_wheel:
+              {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -72,42 +140,7 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        arm_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_base_rot_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_first_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_fourth_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_second_connector_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_second_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_second_motor_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        arm_third_link:
+        arm_base_connect:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -116,12 +149,105 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        camera:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_support_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        chassis:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        joint1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        joint2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        joint3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        joint4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        joint5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        joint6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        joint6_flange:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lidar:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        sucker_joint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        usb_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /visualization_marker
+      Name: Marker
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -147,25 +273,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.83453083
+      Distance: 0.641030312
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.0471653417
-        Y: -0.131750956
-        Z: -0.0165439975
+        X: -0.0750456005
+        Y: 0.178501427
+        Z: 0.329739332
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.929797411
+      Pitch: 0.554798663
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.98040199
+      Yaw: 4.90539789
     Saved: ~
 Window Geometry:
   Displays:
