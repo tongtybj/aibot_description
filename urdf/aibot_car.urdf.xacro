@@ -163,7 +163,7 @@
       <geometry>
         <cylinder radius="0.005" length="0.005"/>
       </geometry>
-      <material name="green"/>
+      <material name="black"/>
     </visual>
 
   </link>
@@ -187,7 +187,7 @@
       <geometry>
         <cylinder radius="0.03" length="0.017"/>
       </geometry>
-      <material name="green"/>
+      <material name="green_black"/>
     </visual>
 
   </link>
@@ -227,6 +227,34 @@
   </joint>
 
 
+  <link name="pump_support_link">
+    <collision name='collision_pump_support'>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aibot_description/meshes/pump_support.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision> 
+
+    <visual>
+      <origin xyz="0 0 0" rpy="1.57 0 1.57"/>
+      <geometry>
+        <mesh filename="package://aibot_description/meshes/pump_support.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name = "green_gray">
+        <color rgba = "0.2 0.8 0.6 1"/>
+      </material>
+    </visual>
+  </link>
+
+
+  <joint name="pump_support_joint" type="fixed">
+    <origin xyz="0 -0.049 0.02" rpy="0 0 0"/>
+    <parent link="arm_base_connect"/>
+    <child link="pump_support_link"/>
+  </joint>
+  
+
+
   <link name="camera_support_link">
 
     <collision name='collision_camera_support'>
@@ -241,7 +269,7 @@
         <mesh filename="package://aibot_description/meshes/camera_support.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <origin xyz = "0 0 0" rpy = "0 1.57 3.14"/>
-      <material name = "blue">
+      <material name = "green">
         <color rgba = "0 1 0 1"/>
       </material>
     </visual>
@@ -468,16 +496,17 @@
   <link name="sucker_joint">
     <visual>
       <geometry>
-        <cylinder length="0.08" radius="0.0125"/>
+        <!-- <cylinder length="0.08" radius="0.0125"/> -->
+        <mesh filename="package://aibot_description/meshes/sucker.stl"  scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin xyz = "0.0 0 0 " rpy = "0 0 0"/>
+      <origin xyz = "0.0 0 0 " rpy = "-1.57 0 1.57"/>
       <material name = "white">
         <color rgba = "0.9 0.9 0.9 1"/>
       </material>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.08" radius="0.0125"/>
+        <cylinder length="0.06" radius="0.0125"/>
       </geometry>
       <origin xyz = "0.0 0 0 " rpy = "0 0 0"/>
     </collision>
@@ -486,7 +515,8 @@
   <joint name="sucker_joint_to_joint6_flange" type="fixed">
     <parent link="joint6_flange"/>
     <child link="sucker_joint"/>
-    <origin xyz= "0 0.027 0.0125" rpy = "0 0 0"/>
+    <!-- <origin xyz= "0 0.027 0.0125" rpy = "0 0 0"/> -->
+    <origin xyz= "0 0.022 0" rpy = "0 0 0"/>
   </joint>
 
 
