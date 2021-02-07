@@ -2,27 +2,9 @@
 
 <robot name="aibot" xmlns:xacro="http://ros.org/wiki/xacro">
 
-
-  <xacro:property name="cameraSize" value="0.02"/>
-  <xacro:property name="cameraMass" value="0.1"/>
-  <xacro:property name="width" value=".2" />
-
   <link name='base_link' />
 
   <link name='base_footprint'>
-    <collision name='collision_body'>
-    <origin xyz="0 0 0.045" rpy="0 0 0"/>
-      <geometry>
-        <box size=".32 .18 .09"/>
-      </geometry>
-    </collision>
-
-    <collision name='collision_head'>
-     <origin xyz="0.045 0 0.055" rpy="0 0 0"/>
-      <geometry>
-        <box size=".12 .1 .11"/>
-      </geometry>
-    </collision> 
 
     <visual name='base_footprint_visual'>
       <origin xyz="0 0 0" rpy="1.57 0 0"/>
@@ -31,9 +13,23 @@
       </geometry>
     </visual>
 
+    <collision name='collision_body'>
+    <origin xyz="0 0 0.045" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.32 0.18 0.09"/>
+      </geometry>
+    </collision>
+
+    <collision name='collision_head'>
+     <origin xyz="0.045 0 0.055" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.12 0.1 0.11"/>
+      </geometry>
+    </collision> 
+
   </link>
 
-  <joint type="fixed" name="base_footprint_joint">
+  <joint name="base_footprint_joint" type="fixed" >
     <origin xyz="0 0 0.016" rpy="0 0 0"/>
     <child link="base_footprint"/>
     <parent link="base_link"/>
@@ -41,41 +37,41 @@
 
   <link name="front_left_wheel">
 
-    <collision name="collision">
-      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder radius="0.0325" length="0.03"/>
-      </geometry>
-    </collision>
-
-    <visual name="left_wheel_visual">
+    <visual name="front_left_wheel_visual">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </visual>
 
-  </link>
-
-  <link name="front_right_wheel">
-
-    <collision name="collision">
+    <collision name="collision_front_left_wheel">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </collision>
 
-    <visual name="right_wheel_visual">
+  </link>
+
+  <link name="front_right_wheel">
+
+    <visual name="front_right_wheel_visual">
       <origin xyz="0 0 0.0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </visual>
 
+    <collision name="collision_front_right_wheel">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.0325" length="0.03"/>
+      </geometry>
+    </collision>
+
   </link>
 
-  <joint type="continuous" name="front_left_wheel_hinge">
+  <joint name="front_left_wheel_hinge" type="continuous">
     <origin xyz="0.1035 0.09 0.019" rpy="0 0 0"/>
     <child link="front_left_wheel"/>
     <parent link="base_footprint"/>
@@ -84,7 +80,7 @@
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
 
-  <joint type="continuous" name="front_right_wheel_hinge">
+  <joint name="front_right_wheel_hinge" type="continuous">
     <origin xyz="0.1035 -0.09 0.019" rpy="0 0 0"/>
     <child link="front_right_wheel"/>
     <parent link="base_footprint"/>
@@ -96,42 +92,41 @@
 
   <link name="rear_left_wheel">
 
-    <collision name="collision">
-      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder radius="0.0325" length="0.03"/>
-      </geometry>
-    </collision>
-
-    <visual name="left_wheel_visual">
+    <visual name="rear_left_wheel_visual">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </visual>
+
+    <collision name="collision_rear_left_wheel">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.0325" length="0.03"/>
+      </geometry>
+    </collision>
 
   </link>
 
   <link name="rear_right_wheel">
 
-    <collision name="collision">
-      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
-      <geometry>
-        <cylinder radius="0.0325" length="0.03"/>
-      </geometry>
-    </collision>
-
-    <visual name="right_wheel_visual">
+    <visual name="rear_right_wheel_visual">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
         <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </visual>
 
+    <collision name="collision_rear_right_wheel">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.0325" length="0.03"/>
+      </geometry>
+    </collision>
  
   </link>
 
-  <joint type="continuous" name="rear_left_wheel_hinge">
+  <joint name="rear_left_wheel_hinge" type="continuous">
     <origin xyz="-0.1035 0.09 0.019" rpy="0 0 0"/>
     <child link="rear_left_wheel"/>
     <parent link="base_footprint"/>
@@ -140,7 +135,7 @@
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
 
-  <joint type="continuous" name="rear_right_wheel_hinge">
+  <joint name="rear_right_wheel_hinge" type="continuous">
     <origin xyz="-0.1035 -0.09 0.019" rpy="0 0 0"/>
     <child link="rear_right_wheel"/>
     <parent link="base_footprint"/>
@@ -151,20 +146,21 @@
 
 
   <link name="camera">
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <cylinder radius="0.005" length="0.005"/>
-      </geometry>
-    </collision>
 
-    <visual>
+    <visual name="camera_visual">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <cylinder radius="0.005" length="0.005"/>
       </geometry>
       <material name="black"/>
     </visual>
+
+    <collision name="collision_camera">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.005" length="0.005"/>
+      </geometry>
+    </collision>
 
   </link>
 
@@ -175,14 +171,8 @@
   </joint>
 
   <link name="laser">
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <cylinder radius="0.03" length="0.017"/>
-      </geometry>
-    </collision>
 
-    <visual>
+    <visual name="laser_visual">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <cylinder radius="0.03" length="0.017"/>
@@ -190,9 +180,16 @@
       <material name="green_black"/>
     </visual>
 
+    <collision name="collision_laser">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.017"/>
+      </geometry>
+    </collision>
+
   </link>
 
-  <joint name="lidar_joint" type="fixed">
+  <joint name="laser_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz=".0493 0 0.115" rpy="0 0 3.14"/>
     <parent link="base_footprint"/>
@@ -201,14 +198,8 @@
 
 
   <link name="arm_base_connect">
-    <collision name='collision_arm_base_connect'>
-     <origin xyz="0 0 0.011" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.115 0.135 0.024"/>
-      </geometry>
-    </collision> 
 
-    <visual>
+    <visual name="arm_base_connect_visual">
       <origin xyz="0 0 0" rpy="1.57 0 1.57"/>
       <geometry>
         <mesh filename="package://aibot_description/meshes/arm_base_connect_cover.stl" scale="0.001 0.001 0.001"/>
@@ -217,6 +208,13 @@
         <color rgba = "0.5 1 1 1"/>
       </material>
     </visual>
+
+    <collision name='collision_arm_base_connect'>
+     <origin xyz="0 0 0.011" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.115 0.135 0.024"/>
+      </geometry>
+    </collision> 
 
   </link>
 
@@ -228,14 +226,8 @@
 
 
   <link name="pump_support_link">
-    <collision name='collision_pump_support'>
-     <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://aibot_description/meshes/pump_support.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision> 
 
-    <visual>
+    <visual name="pump_support_visual">
       <origin xyz="0 0 0" rpy="1.57 0 1.57"/>
       <geometry>
         <mesh filename="package://aibot_description/meshes/pump_support.stl" scale="0.001 0.001 0.001"/>
@@ -244,6 +236,14 @@
         <color rgba = "0.2 0.8 0.6 1"/>
       </material>
     </visual>
+
+    <collision name='collision_pump_support'>
+     <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aibot_description/meshes/pump_support.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision> 
+
   </link>
 
 
@@ -257,14 +257,7 @@
 
   <link name="camera_support_link">
 
-    <collision name='collision_camera_support'>
-     <origin xyz="-0.031 0 0.025" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.135 0.06 0.05"/>
-      </geometry>
-    </collision>
-
-    <visual>
+    <visual name="camera_support_visual">
       <geometry>
         <mesh filename="package://aibot_description/meshes/camera_support.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -273,6 +266,14 @@
         <color rgba = "0 1 0 1"/>
       </material>
     </visual>
+
+    <collision name='collision_camera_support'>
+     <origin xyz="-0.031 0 0.025" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.135 0.06 0.05"/>
+      </geometry>
+    </collision>
+
   </link>
 
   <joint name="camera_support_joint" type="fixed">
@@ -283,7 +284,8 @@
 
 
   <link name="usb_camera_link">
-    <visual>
+
+    <visual name="usb_camera_visual">
       <geometry>
         <mesh filename="package://aibot_description/meshes/camera.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -304,6 +306,7 @@
 <!-- arm -->
 
   <link name="joint1">
+
     <visual>
       <geometry>
        <mesh filename="package://aibot_description/meshes/joint1.dae"/>
@@ -313,16 +316,19 @@
         <color rgba = "0.1 0.1 0.9 1"/>
       </material>
     </visual>
+
     <collision>
      <origin xyz = "0.0 0 0.036 " rpy = " 0 0 0"/>
       <geometry>
         <cylinder length="0.072" radius="0.045"/>
       </geometry>
     </collision>
+
   </link>
 
 
   <link name="joint2">
+
     <visual>
       <geometry>
        <mesh filename="package://aibot_description/meshes/joint2.dae"/>
@@ -332,16 +338,19 @@
         <color rgba = "0.4 0.4 0.4 1"/>
       </material>
     </visual>
+
     <collision>
       <origin xyz = "0.0 0 0.04 " rpy = " 0 0 0"/>
       <geometry>
         <cylinder length="0.080" radius="0.024"/>
       </geometry>
     </collision>
+
   </link>
 
 
   <link name="joint3">
+
     <visual>
       <geometry>
        <mesh filename="package://aibot_description/meshes/joint3.dae"/>
@@ -351,16 +360,19 @@
         <color rgba = "0.4 0.4 0.4 1"/>
       </material>
     </visual>
+
     <collision>
       <origin xyz = "0.027 0 0.054 " rpy = " 0 0 0"/>
       <geometry>
         <cylinder length="0.156" radius="0.026"/>
       </geometry>
     </collision>
+
   </link>
 
 
   <link name="joint4">
+
     <visual>
       <geometry>
        <mesh filename="package://aibot_description/meshes/joint4.dae"/>
@@ -370,16 +382,19 @@
         <color rgba = "0.4 0.4 0.4 1"/>
       </material>
     </visual>
+
     <collision>
       <origin xyz = "-0.027 0 0.0475 " rpy = " 0 0 0"/>
       <geometry>
         <cylinder length="0.137" radius="0.026"/>
       </geometry>
     </collision>
+
   </link>
 
 
 <link name="joint5">
+
     <visual>
       <geometry>
        <mesh filename="package://aibot_description/meshes/joint5.dae"/>
@@ -389,16 +404,19 @@
         <color rgba = "0.4 0.4 0.4 1"/>
       </material>
     </visual>
+
     <collision>
       <origin xyz = "0.025 0 0.015 " rpy = " 0 0 0"/>
       <geometry>
         <cylinder length="0.06" radius="0.024"/>
       </geometry>
     </collision>
+
   </link>
 
 
   <link name="joint6">
+
     <visual>
       <geometry>
        <mesh filename="package://aibot_description/meshes/joint6.dae"/>
@@ -408,16 +426,19 @@
         <color rgba = "0.4 0.4 0.4 1"/>
       </material>
     </visual>
+
     <collision>
       <origin xyz = "0.0 0 0.0379 " rpy = " 1.57 0 0"/>
       <geometry>
         <cylinder length="0.058" radius="0.020"/>
       </geometry>
     </collision>
+
   </link>
 
 
   <link name="joint6_flange">
+
     <visual>
       <geometry>
         <cylinder length="0.005" radius="0.02"/>
@@ -427,12 +448,14 @@
         <color rgba = "0.9 0.9 0.9 1"/>
       </material>
     </visual>
+
     <collision>
       <geometry>
         <cylinder length="0.005" radius="0.02"/>
       </geometry>
       <origin xyz = "0.0 0 0 " rpy = " 1.57075 0 0"/>
     </collision>
+    
   </link>
 
 
@@ -494,7 +517,8 @@
 
   
   <link name="sucker_joint">
-    <visual>
+
+    <visual name="sucker_visual">
       <geometry>
         <!-- <cylinder length="0.08" radius="0.0125"/> -->
         <mesh filename="package://aibot_description/meshes/sucker.stl"  scale="0.001 0.001 0.001"/>
@@ -504,6 +528,7 @@
         <color rgba = "0.9 0.9 0.9 1"/>
       </material>
     </visual>
+
     <collision>
       <geometry>
         <cylinder length="0.06" radius="0.0125"/>
@@ -515,7 +540,6 @@
   <joint name="sucker_joint_to_joint6_flange" type="fixed">
     <parent link="joint6_flange"/>
     <child link="sucker_joint"/>
-    <!-- <origin xyz= "0 0.027 0.0125" rpy = "0 0 0"/> -->
     <origin xyz= "0 0.022 0" rpy = "0 0 0"/>
   </joint>
 
