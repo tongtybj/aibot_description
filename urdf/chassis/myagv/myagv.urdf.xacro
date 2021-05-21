@@ -214,4 +214,38 @@
     <child link="imu_link"/>
   </joint>
 
+  <link name="extend_back_link">
+    <visual name="extend_visual">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.001" length="0.001"/>
+      </geometry>
+      <material name="green_black"/>
+    </visual>
+  </link>
+
+  <joint name="extend_back_link_joint" type="fixed">
+    <origin xyz="-0.0705 0 0.084" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="extend_back_link"/>
+  </joint>
+
+  <link name="extend_front_link">
+
+    <visual name="extend_visual">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.001" length="0.001"/>
+      </geometry>
+      <material name="green_black"/>
+    </visual>
+
+  </link>
+
+  <joint name="extend_front_link_joint" type="fixed">
+    <origin xyz="0.0695 0 0.154" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="extend_front_link"/>
+  </joint>
+
 </robot>
