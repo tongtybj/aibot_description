@@ -191,7 +191,7 @@
 
   <joint name="laser_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz=".0493 0 0.115" rpy="0 0 1.57"/>
+    <origin xyz=".0493 0 0.115" rpy="0 0 3.14"/>
     <parent link="base_footprint"/>
     <child link="laser"/>
   </joint>
@@ -209,7 +209,7 @@
   </link>
 
   <joint name="imu_joint" type="fixed">
-    <origin xyz="-0.035 -0.01 0.0216" rpy="0 0 1.57"/>
+    <origin xyz="-0.035 -0.01 0.0216" rpy="0 0 0"/>
     <parent link="base_footprint"/>
     <child link="imu_link"/>
   </joint>
