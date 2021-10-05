@@ -1,15 +1,15 @@
 <?xml version='1.0'?>
 
-<robot name="aibot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="chassis_a1" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <link name='base_link' />
 
   <link name='base_footprint'>
 
     <visual name='base_footprint_visual'>
-      <origin xyz="0 0 0" rpy="0 1.57 3.14"/>
+      <origin xyz="0 0 0" rpy="1.57 0 0"/>
       <geometry>
-        <mesh filename="package://aibot_description/meshes/myagv/car_body.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://aibot_description/meshes/$(env AIBOT_BASE)/car_body.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
 
@@ -30,7 +30,7 @@
   </link>
 
   <joint name="base_footprint_joint" type="fixed" >
-    <origin xyz="0 0 0.021" rpy="0 0 0"/>
+    <origin xyz="0 0 0.0135" rpy="0 0 0"/>
     <child link="base_footprint"/>
     <parent link="base_link"/>
   </joint>
@@ -40,14 +40,14 @@
     <visual name="front_left_wheel_visual">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.04" length="0.03"/>
+        <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </visual>
 
     <collision name="collision_front_left_wheel">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.04" length="0.03"/>
+        <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </collision>
 
@@ -58,14 +58,14 @@
     <visual name="front_right_wheel_visual">
       <origin xyz="0 0 0.0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.04" length="0.03"/>
+        <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </visual>
 
     <collision name="collision_front_right_wheel">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.04" length="0.03"/>
+        <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </collision>
 
@@ -95,14 +95,14 @@
     <visual name="rear_left_wheel_visual">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.04" length="0.03"/>
+        <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </visual>
 
     <collision name="collision_rear_left_wheel">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.04" length="0.03"/>
+        <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </collision>
 
@@ -113,14 +113,14 @@
     <visual name="rear_right_wheel_visual">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.04" length="0.03"/>
+        <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </visual>
 
     <collision name="collision_rear_right_wheel">
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.04" length="0.03"/>
+        <cylinder radius="0.0325" length="0.03"/>
       </geometry>
     </collision>
  
@@ -165,7 +165,7 @@
   </link>
 
   <joint name="camera_joint" type="fixed">
-    <origin xyz=".1488 0 0.0547" rpy="1.57 0 1.57"/>
+    <origin xyz=".12 0 0.0732" rpy="1.57 0 1.57"/>
     <parent link="base_footprint"/>
     <child link="camera"/>
   </joint>
@@ -215,6 +215,7 @@
   </joint>
 
   <link name="extend_back_link">
+
     <visual name="extend_visual">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -222,30 +223,13 @@
       </geometry>
       <material name="green_black"/>
     </visual>
+
   </link>
 
   <joint name="extend_back_link_joint" type="fixed">
-    <origin xyz="-0.0705 0 0.084" rpy="0 0 0"/>
+    <origin xyz="-0.0865 0 0.088" rpy="0 0 0"/>
     <parent link="base_footprint"/>
     <child link="extend_back_link"/>
-  </joint>
-
-  <link name="extend_front_link">
-
-    <visual name="extend_visual">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <cylinder radius="0.001" length="0.001"/>
-      </geometry>
-      <material name="green_black"/>
-    </visual>
-
-  </link>
-
-  <joint name="extend_front_link_joint" type="fixed">
-    <origin xyz="0.0695 0 0.154" rpy="0 0 0"/>
-    <parent link="base_footprint"/>
-    <child link="extend_front_link"/>
   </joint>
 
 </robot>

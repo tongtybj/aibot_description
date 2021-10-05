@@ -1,9 +1,9 @@
 <?xml version='1.0'?>
 
-<robot name="aibot_a1_mycobot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="chassis_with_mycobot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find mycobot_ros)/urdf/mycobot_urdf.urdf" />
-  <xacro:include filename="$(find aibot_description)/urdf/chassis/myagv/myagv.urdf.xacro" />
+  <xacro:include filename="$(find aibot_description)/urdf/chassis/$(env AIBOT_BASE)/chassis.urdf.xacro" />
 
 
   <joint name="arm_joint" type="fixed">
