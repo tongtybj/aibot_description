@@ -1,6 +1,8 @@
 <?xml version='1.0'?>
 
-<robot name="aibot_a1" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="aibot_mini" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find aibot_description)/urdf/chassis/inertial.xacro" />
 
   <link name='base_link' />
 
@@ -20,6 +22,8 @@
         <box size="0.135 0.118 0.112"/>
       </geometry>
     </collision>
+
+    <box_inertial_matrix m="20" l="0.135" w="0.118" h="0.112"/>
 
   </link>
 
@@ -47,6 +51,8 @@
       </geometry>
     </collision>
 
+    <cylinder_inertial_matrix m="0.5" r="0.025" h="0.025"/>
+
   </link>
 
 
@@ -65,6 +71,8 @@
         <cylinder radius="0.025" length="0.025"/>
       </geometry>
     </collision>
+
+    <cylinder_inertial_matrix m="0.5" r="0.025" h="0.025"/>
 
   </link>
 
@@ -105,6 +113,8 @@
       </geometry>
     </collision>
 
+    <cylinder_inertial_matrix m="0.5" r="0.025" h="0.025"/>
+
   </link>
 
 
@@ -123,6 +133,8 @@
         <cylinder radius="0.025" length="0.025"/>
       </geometry>
     </collision>
+
+    <cylinder_inertial_matrix m="0.5" r="0.025" h="0.025"/>
  
   </link>
 
