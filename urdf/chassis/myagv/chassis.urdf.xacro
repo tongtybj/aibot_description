@@ -17,7 +17,7 @@
     <visual name='base_footprint_visual'>
       <origin xyz="0 0 0" rpy="0 1.57 3.14"/>
       <geometry>
-        <mesh filename="package://aibot_description/meshes/$(env AIBOT_BASE)/car_body.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://aibot_description/meshes/myagv/car_body.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
 
